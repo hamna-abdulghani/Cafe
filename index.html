@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet & Bloom | Aesthetic Cafe & Patisserie</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --bg-linen: #FAF7F2;
+            --text-main: #3E3633;
+            --accent-rose: #D19A8A;
+            --accent-gold: #C5A880;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-linen);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar {
+            background-color: rgba(250, 247, 242, 0.85) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            color: var(--text-main) !important;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-main) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-rose) !important;
+        }
+
+        /* Hero Header */
+        .hero-section {
+            padding: 160px 0 80px 0;
+            background: radial-gradient(circle at top right, rgba(209, 154, 138, 0.12), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(197, 168, 128, 0.12), transparent 50%);
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .hero-section p {
+            color: #7A6F6C;
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Pills */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--text-main);
+            padding: 8px 26px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-rose);
+            border-color: var(--accent-rose);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(209, 154, 138, 0.25);
+        }
+
+        /* Aesthetic Cards */
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(209, 154, 138, 0.2);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: 100%;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(62, 54, 51, 0.08);
+        }
+
+        .card-img-wrapper {
+            height: 230px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(250, 247, 242, 0.9);
+            backdrop-filter: blur(6px);
+            color: var(--text-main);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--accent-rose);
+        }
+
+        .btn-order {
+            background-color: transparent;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 6px 18px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-order:hover {
+            background-color: var(--text-main);
+            color: #ffffff;
+        }
+
+        /* Section divider titles */
+        .section-heading h2 {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #F1ECE4;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid rgba(197, 168, 128, 0.2);
+            color: #6E635F;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="bi bi-cup-hot me-2 text-rose" style="color: var(--accent-rose);"></i>Velvet & Bloom</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">Menu Variations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vibe">Our Atmosphere</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="#menu" class="btn btn-sm px-4 rounded-pill text-white" style="background-color: var(--accent-rose);">Reserve a Table</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-section">
+        <div class="container">
+            <span class="text-uppercase tracking-widest small fw-semibold d-block mb-3" style="letter-spacing: 3px; color: var(--accent-gold);">Artisan Confectionery & Drinks</span>
+            <h1 class="mb-4">Elegance in Every Bite</h1>
+            <p class="mb-5">Discover our hand-curated variations of decadent brownies, soft-baked artisan cookies, and dreamy aesthetic shakes.</p>
+            <a href="#menu" class="btn btn-lg px-5 rounded-pill text-white shadow-sm" style="background-color: var(--accent-rose);">Explore The Menu</a>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-5">
+        <div class="container py-4">
+            <div class="text-center section-heading mb-4">
+                <h2 class="display-6">Menu Variations</h2>
+                <p class="text-muted">Click the categories below to view specific treats</p>
+            </div>
+
+            <!-- Dynamic Filter Tabs -->
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterSelection('all')">All Creations</button>
+                <button class="filter-btn" onclick="filterSelection('brownies')">Brownies</button>
+                <button class="filter-btn" onclick="filterSelection('cookies')">Cookies</button>
+                <button class="filter-btn" onclick="filterSelection('shakes')">Shakes</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="row g-4" id="menu-grid">
+                
+                <!-- 1. BROWNIE -->
+                <div class="col-md-4 menu-item" data-category="brownies">
+                    <div class="menu-card">
+                        <div class="card-img-wrapper">
+                            <span class="category-badge">Brownie</span>
+                            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80" alt="Matcha Fudge Brownie">
+                        </div>
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">Matcha Fudge Brownie</h5>
+                                <span class="item-price">$4.80</span>
+                            </div>
+                            <p class="text-muted small mb-4">Rich dark chocolate fudge base topped with smooth ceremonial-grade matcha cream layer.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button class="btn btn-order">Add to Tray</button>
+                                <small class="text-muted fst-italic">Freshly Baked</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. BROWNIE -->
+                <div class="col-md-4 menu-item" data-category="brownies">
+                    <div class="menu-card">
+                        <div class="card-img-wrapper">
+                            <span class="category-badge">Brownie</span>
+                            <img src="https://images.unsplash.com/photo-1515037893549-34c8360ee3b1?auto=format&fit=crop&w=700&q=80" alt="Salted Caramel Blondie">
+                        </div>
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">Salted Caramel Blondie</h5>
+                                <span class="item-price">$4.50</span>
+                            </div>
+                            <p class="text-muted small mb-4">Buttery brown-sugar blonde bar laced with sea salt caramel ribbons and white chocolate chunks.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button class="btn btn-order">Add to Tray</button>
+                                <small class="text-muted fst-italic">Nut-Free Option</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. COOKIE -->
+                <div class="col-md-4 menu-item" data-category="cookies">
+                    <div class="menu-card">
+                        <div class="card-img-wrapper">
+                            <span class="category-badge">Cookie</span>
+                            <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80" alt="Rose Velvet Cookie">
+                        </div>
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">Rose Velvet Cookie</h5>
+                                <span class="item-price">$3.75</span>
+                            </div>
+                            <p class="text-muted small mb-4">Soft pink velvet cookie stuffed with gooey cream cheese filling and finished with dried rose petals.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button class="btn btn-order">Add to Tray</button>
+                                <small class="text-muted fst-italic">Signature Treat</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. COOKIE -->
+                <div class="col-md-4 menu-item" data-category="cookies">
+                    <div class="menu-card">
+                        <div class="card-img-wrapper">
+                            <span class="category-badge">Cookie</span>
+                            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=700&q=80" alt="Biscoff Lava Cookie">
+                        </div>
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">Biscoff Lava Cookie</h5>
+                                <span class="item-price">$4.20</span>
+                            </div>
+                            <p class="text-muted small mb-4">Thick, chunky dough packed with speculoos crumbles and a molten center of warm Biscoff spread.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button class="btn btn-order">Add to Tray</button>
+                                <small class="text-muted fst-italic">Warm Center</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. SHAKE -->
+                <div class="col-md-4 menu-item" data-category="shakes">
+                    <div class="menu-card">
+                        <div class="card-img-wrapper">
+                            <span class="category-badge">Shake</span>
+                            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=700&q=80" alt="Strawberry Cloud Shake">
+                        </div>
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">Strawberry Cloud Shake</h5>
+                                <span class="item-price">$6.50</span>
+                            </div>
+                            <p class="text-muted small mb-4">Hand-spun organic strawberry puree with vanilla bean ice cream, topped with spun cotton candy.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button class="btn btn-order">Add to Tray</button>
+                                <small class="text-muted fst-italic">Insta-Worthy</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. SHAKE -->
+                <div class="col-md-4 menu-item" data-category="shakes">
+                    <div class="menu-card">
+                        <div class="card-img-wrapper">
+                            <span class="category-badge">Shake</span>
+                            <img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?auto=format&fit=crop&w=700&q=80" alt="Hazelnut Espresso Frappe">
+                        </div>
+                        <div class="p-4 d-flex flex-column h-100">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="fw-bold mb-0">Hazelnut Espresso Frappe</h5>
+                                <span class="item-price">$6.00</span>
+                            </div>
+                            <p class="text-muted small mb-4">Double-shot cold espresso blended with roasted hazelnuts, fresh milk, and a whipped cloud crown.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <button class="btn btn-order">Add to Tray</button>
+                                <small class="text-muted fst-italic">Caffeine Boost</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Vibe Section -->
+    <section id="vibe" class="py-5" style="background-color: #F1ECE4;">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafe interior" class="img-fluid rounded-4 shadow-sm">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h2 class="fw-bold mb-3">Designed for the Aesthetic Soul</h2>
+                    <p class="text-muted mb-4">At Velvet & Bloom, we believe that taste and visual beauty go hand in hand. Every brownie layer, cookie crumble, and pastel shake swirl is meticulously crafted to brighten your day and bring peace to your senses.</p>
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <h4 class="fw-bold mb-0 text-rose" style="color: var(--accent-rose);">100%</h4>
+                            <small class="text-muted">Artisan Quality</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 class="fw-bold mb-0 text-rose" style="color: var(--accent-rose);">Pure</h4>
+                            <small class="text-muted">Organic Ingredients</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 class="fw-bold mb-0 text-rose" style="color: var(--accent-rose);">Daily</h4>
+                            <small class="text-muted">Freshly Baked</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-1 fw-semibold">&copy; 2026 Velvet & Bloom Aesthetics Cafe. All rights reserved.</p>
+            <p class="small text-muted mb-0">Crafted with warm colors, soft shadows, and sweet flavors.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Interactive Filter Script -->
+    <script>
+        function filterSelection(category) {
+            // Update active states on filter buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter items smoothly
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
